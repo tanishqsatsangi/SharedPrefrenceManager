@@ -24,62 +24,74 @@ public class SharedPreferenceManager {
     }
 
 
-    private void storeIntegerToSP(String key, int value) {
+    public void storeIntegerToSP(String key, int value) {
         editor.putInt(key, value);
         editor.commit();
     }
 
-    private void storeLongToSP(String key, long value) {
+    public void storeLongToSP(String key, long value) {
         editor.putLong(key, value);
         editor.commit();
     }
 
-    private void storeStringToSP(String key, String value) {
+    public void storeStringToSP(String key, String value) {
         editor.putString(key, value);
         editor.commit();
     }
 
-    private void storeBooleanToSP(String key, boolean value) {
+    public void storeBooleanToSP(String key, boolean value) {
         editor.putBoolean(key, value);
         editor.commit();
     }
 
-    private void storeFloatToSP(String key, float value) {
+    public void storeFloatToSP(String key, float value) {
         editor.putFloat(key, value);
         editor.commit();
     }
 
-    private void storeStringSetToSP(String key, Set<String> value) {
+    public void storeStringSetToSP(String key, Set<String> value) {
         editor.putStringSet(key, value);
         editor.commit();
     }
 
-    private int getIntegerFromSP(String key, int defValue) {
+    public int getIntegerFromSP(String key, int defValue) {
         return mSPref.getInt(key, defValue);
     }
 
-    private long getLongFromSP(String key, long defValue) {
+    public long getLongFromSP(String key, long defValue) {
         return mSPref.getLong(key, defValue);
     }
 
-    private String getStringFromSP(String key, String defValue) {
+    public String getStringFromSP(String key, String defValue) {
         return mSPref.getString(key, defValue);
     }
 
-    private boolean getBooleanFromSP(String key, boolean defValue) {
+    public boolean getBooleanFromSP(String key, boolean defValue) {
         return mSPref.getBoolean(key, defValue);
     }
 
-    private float getFloatFromSP(String key, float defValue) {
+    public float getFloatFromSP(String key, float defValue) {
         return mSPref.getFloat(key, defValue);
     }
 
-    private Map<String, ?> getAllFromSP() {
+    public Map<String, ?> getAllFromSP() {
         return mSPref.getAll();
     }
 
-    private boolean isContains(String key) {
+    public boolean isContains(String key) {
         return mSPref.contains(key);
+    }
+
+    public void clearSP() {
+        editor.clear();
+        editor.commit();
+    }
+
+    public SharedPreferences.Editor getEditor() {
+        if (editor == null && mSPref != null) {
+            return mSPref.edit();
+        }
+        return editor;
     }
 
 }
